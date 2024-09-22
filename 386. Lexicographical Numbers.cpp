@@ -1,6 +1,8 @@
-class Solution {
+class Solution
+{
 public:
-    void util(int i, int n, vector<int>& v) {
+    void util(int i, int n, vector<int> &v)
+    {
 
         if (i > n)
             return;
@@ -11,7 +13,8 @@ public:
             util(i * 10 + j, n, v);
     }
 
-    vector<int> lexicalOrder(int n) {
+    vector<int> lexicalOrder(int n)
+    {
 
         vector<int> v;
 
