@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<vector<char>> rotateTheBox(vector<vector<char>>& box) {
+
+        int m = box.size();
+        int n = box[0].size();
+        vector<vector<char>> result(n, vector<char>(m));
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                result[i][j] = box[j][i];
+
+        for (int i = 0; i < n; i++)
+            reverse(result[i].begin(), result[i].end());
+
+        for (int j = 0; j < m; j++) {
+            for (int i = n - 1; i >= 0; i--) {
+                if (result[i][j] == '.') {
+
+                    int nextRowHavingStone = -1;
+
+                    for (int k = i - 1; k >= 0; k--) {
+                        if (result[k][j] == '*')
+                            break;
+                        if (result[k][j] == '#') {
+                            nextRowHavingStone = k;
+                            break;
+                        }
+                    }
+
+                    if (nextRowHavingStone != -1) {
+                        result[nextRowHavingStone][j] = '.';
+                        result[i][j] = '#';
+                    }
+                }
+            }
+        }
+        return result;
+    }
+};
